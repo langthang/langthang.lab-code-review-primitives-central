@@ -1,0 +1,32 @@
+name: dispatch-native-sync
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - instructions/**
+      - config/repo-map.json
+      - scripts/sync-native-instructions.sh
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+      matrix:
+        include:
+          - repo: amadeus-airlines-solutions/orms.orms-ms-sal
+            key: orms.orms-ms-sal
+          - repo: amadeus-airlines-solutions/orms.orms-ms-fulfillment
+            key: orms.orms-ms-fulfillment
+    steps:
+      - name: Trigger repository_dispatch in target repo
+        env:
+          GH_TOKEN: ${{ secrets.CENTRAL_DISPATCH_PAT }}
+        run: |
+          gh api repos/${{ matrix.repo }}/dispatches \
+            -f event_type='copilot-native-sync' \
+            -f client_payload='{"target_key":"${{ matrix.key }}","central_ref":"${{ github.sha }}","central_repo":"${{ github.repository }}"}'
