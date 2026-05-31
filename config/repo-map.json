@@ -1,0 +1,19 @@
+{
+  "targets": [
+    {
+      "repo": "langthang/langthang.lab-ms-sal",
+      "key": "langthang.lab-ms-sal",
+      "profiles": ["microservice"]
+    },
+    {
+      "repo": "langthang/langthang.lab-ms-fulfillment",
+      "key": "langthang.lab-ms-fulfillment",
+      "profiles": ["microservice", "fulfillment"]
+    },
+    {
+      "repo": "langthang/langthang.lab-lib-fulfillment",
+      "key": "langthang.lab-lib-fulfillment",
+      "profiles": ["library", "fulfillment"]
+    }
+  ]
+}
