@@ -29,6 +29,13 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.CENTRAL_DISPATCH_PAT }}
         run: |
-          gh api repos/${{ matrix.repo }}/dispatches \
-            -f event_type='copilot-native-sync' \
-            -F client_payload='{"target_key":"${{ matrix.key }}","central_ref":"${{ github.sha }}","central_repo":"${{ github.repository }}"}'
+          gh api repos/${{ matrix.repo }}/dispatches --input - <<EOF
+          {
+            "event_type": "copilot-native-sync",
+            "client_payload": {
+              "target_key": "${{ matrix.key }}",
+              "central_ref": "${{ github.sha }}",
+              "central_repo": "${{ github.repository }}"
+            }
+          }
+          EOF
