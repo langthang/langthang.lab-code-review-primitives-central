@@ -2,7 +2,7 @@ name: dispatch-native-sync
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - instructions/**
       - config/repo-map.json
