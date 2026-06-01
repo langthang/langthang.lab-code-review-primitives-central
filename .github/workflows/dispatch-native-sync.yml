@@ -18,10 +18,12 @@ jobs:
       max-parallel: 5
       matrix:
         include:
-          - repo: amadeus-airlines-solutions/orms.orms-ms-sal
-            key: orms.orms-ms-sal
-          - repo: amadeus-airlines-solutions/orms.orms-ms-fulfillment
-            key: orms.orms-ms-fulfillment
+          - repo: langthang/langthang.lab-ms-sal
+            key: langthang.lab-ms-sal
+          - repo: langthang/langthang.lab-ms-fulfillment
+            key: langthang.lab-ms-fulfillment
+          - repo: langthang/langthang.lab-lib-fulfillment
+            key: langthang.lab-lib-fulfillment
     steps:
       - name: Trigger repository_dispatch in target repo
         env:
