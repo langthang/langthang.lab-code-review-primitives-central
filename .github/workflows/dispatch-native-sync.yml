@@ -31,4 +31,4 @@ jobs:
         run: |
           gh api repos/${{ matrix.repo }}/dispatches \
             -f event_type='copilot-native-sync' \
-            -f client_payload='{"target_key":"${{ matrix.key }}","central_ref":"${{ github.sha }}","central_repo":"${{ github.repository }}"}'
+            -F client_payload='{"target_key":"${{ matrix.key }}","central_ref":"${{ github.sha }}","central_repo":"${{ github.repository }}"}'
